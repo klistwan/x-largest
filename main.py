@@ -33,7 +33,7 @@ class TopRecordHandler:
 def main():
 	parser = argparse.ArgumentParser(description='Report x largest values.')
 	parser.add_argument('x_largest', type=int, help='number of largest values')
-	parser.add_argument('--file', '-f', nargs='?')
+	parser.add_argument('--file', '-f', nargs='?', help='absolute path to an input file')
 	_args = parser.parse_args()
 
 	# Open from file if supplied, else from stdin.
