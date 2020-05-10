@@ -11,9 +11,6 @@ class Record:
 	def __lt__(self, other):
 	    return self.value < other.value
 
-	def __str__(self):
-	    return self.uid
-
 
 class TopRecordHandler:
 	def __init__(self, x: int):

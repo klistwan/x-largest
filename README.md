@@ -1,4 +1,12 @@
-# Finding the `x` largest values
+# Finding the x largest values
+## Problem Statement
+Write a program that reads file contents from `stdin` or optionally, the absolute path of a file.
+
+The data stream is in the format `<unique record identifier><white_space><numeric value>` (e.g. `1426828028 350`).
+
+The output should be a list of unique IDs associated with the X-largest values. X is specified by an input parameter.
+
+The output can be in any order and the solution should accomodate very large files.
 
 ## Summary
 This is my Python solution in reading `n` lines of data and producing the `x` IDs that have the largest values.
