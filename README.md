@@ -39,7 +39,7 @@ Line #    Mem usage    Increment   Line Contents
 
  In all my tests, memory usage stayed constant. It was only when I changed my value for X did my memory usage change.
 
-With respect to time complexity, I've looked at each line of my code and documented its associated time complexity. 
+With respect to time complexity, I've looked at each line of my code and documented its associated time complexity. Note that this function is from a slightly previous version of my code when everything was in a single function which is easier to analyze.
 
 Though I did use Python's `.strip()` and `.split()` when converting each line to a Record, I'm assuming the goal of this challenge is moreso to focus on the data structure and algorithm used in calculating the X largest values, rather than how we parse data. I also wasn't sure if there is a guarantee on the format data comes in (e.g. are UIDs only integers, is the whitespace separate a single space). But if every millisecond of performance was important, there is room for optimization there.
 
