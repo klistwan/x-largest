@@ -85,6 +85,8 @@ Everything was written and tested with Python 3.7.4 on mac OS 10.13.3.
 
 There are two ways to run it: by supplying a path to a file (with argument `--file` or `-f`) or by passing in data via stdin. In each case, the desired number of largest values is a mandatory first argument.
 
+For example, this is an example of finding the 3 largest values in the `500.txt` file.
+
 ```bash
 $ python main.py 3 --file=500.txt 
 000000307
@@ -92,11 +94,12 @@ $ python main.py 3 --file=500.txt
 000000418
 ```
 
+Here is an example of finding the 2 largest values in the `900.txt` file, read from stdin.
+
 ```bash
-$ python main.py 3 < 500.txt 
-000000307
+$ python main.py 2 < 900.txt 
+000000901
 000000343
-000000418
 ```
 
 I also included a generate script that I use to generate test data when doing performance and memory tests. It can be run by including the number of input data lines needed.
