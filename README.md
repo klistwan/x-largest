@@ -71,7 +71,7 @@ The above listed runtimes are per [the official Python documentation](https://do
 
 The first part is simply O(x) since we iterate through x lines and run a single O(x) method `heapify`. The second part has a worst-case of O(log(x) * (n - x)). As a result, our total is O(x + (n-x) * log(x)).
 
-## Other notes
+## Other Ideas
 ### Paralell processing
 If we have access to a multi-core CPU system, another approach can be to process the input data in parallel, so if we have `P` processes, each process will only have to iterate through `N/P` lines of data. Depending on the value of `x` relative to `N`, it may be worthwhile for each process to have its own separate heap with a final aggregation step that combines each heap to produce a single one. Alternatively, having a shared heap in some shared memory may also work. Given Python's GIL, performance testing would have to be done to determine if a more performant solution can be achived using either the `threading` or `multiprocessing` module.
 
@@ -83,9 +83,7 @@ Another potentially viable approach if we have enough memory is to use an [order
 ## Building & Running
 Everything was written and tested with Python 3.7.4 on mac OS 10.13.3.
 
-There are two ways to run it: by supplying a path to a file or by passing in data via stdin.
-
-Path to the file can be passed in with either the `--file` or `-f`.
+There are two ways to run it: by supplying a path to a file (with argument `--file` or `-f`) or by passing in data via stdin. In each case, the desired number of largest values is a mandatory first argument.
 
 ```bash
 $ python main.py 3 --file=500.txt 
