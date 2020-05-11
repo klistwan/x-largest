@@ -55,7 +55,5 @@ def main():
 	if lines: lines.close()
 
 
-
-
 if __name__ == '__main__':
 	main()
