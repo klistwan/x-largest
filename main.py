@@ -1,6 +1,7 @@
 import argparse
 import heapq
 import sys
+import typing
 
 class Record:
 	def __init__(self, file_line):
@@ -13,7 +14,7 @@ class Record:
 
 
 class TopRecordHandler:
-	def __init__(self, x: int):
+	def __init__(self, x: int) -> None:
 		self.heap = []
 		self.max_elements = x
 
@@ -26,24 +27,34 @@ class TopRecordHandler:
 			if self.heap[0] < record:
 				heapq.heapreplace(self.heap, record)
 
-	def output(self):
+	def output(self) -> None:
 		print("\n".join([r.uid for r in self.heap]))
 
 
-def main():
+def parse_args(args: typing.List[str]):
 	parser = argparse.ArgumentParser(description='Report x largest values.')
 	parser.add_argument('x_largest', type=int, help='number of largest values')
 	parser.add_argument('--file', '-f', nargs='?', help='absolute path to an input file')
-	_args = parser.parse_args()
+	return parser.parse_args(args)
+
+
+def main():
+	parser = parse_args(sys.argv[1:])
 
 	# Open from file if supplied, else from stdin.
-	lines = open(_args.file) if _args.file else sys.stdin
+	lines = open(parser.file) if parser.file else sys.stdin
 
-	handler = TopRecordHandler(_args.x_largest)
+	handler = TopRecordHandler(parser.x_largest)
 	for line in lines:
 		record = Record(line)
 		handler.add(record)
+
 	handler.output()
+
+	#　Close file if it was supplied.
+	if lines: lines.close()
+
+
 
 
 if __name__ == '__main__':
