@@ -21,7 +21,7 @@ By running `heapify` once we've built our list of X elements, this only costs us
 With respect to space complexity, we are only storing up to X elements in our heap so it is O(x). I verified this by profiling my code using [Memory Profiler](https://pypi.org/project/memory-profiler/). I did a few separate tests with different amounts of input (e.g. 10^3, 10^4, 10^5, etc) while keeping X constant.
 
 ```bash
-$ python main.py 8 30000.bin 
+$ python main.py 8 --file=30000.txt
 Filename: main.py
 
 Line #    Mem usage    Increment   Line Contents
@@ -81,5 +81,51 @@ Of course, the downsides include the added implementation complexity, the additi
 Another potentially viable approach if we have enough memory is to use an [order statistic algorithm](http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap10.htm) or a selection algorithm like [median of medians](https://en.wikipedia.org/wiki/Median_of_medians) to find the xth largest element in O(n) time. After, you can traverse all the elements once again to find all larger or equal to it.
 
 ## Building & Running
+Everything was written and tested with Python 3.7.4 on mac OS 10.13.3.
+
+There are two ways to run it: by supplying a path to a file or by passing in data via stdin.
+
+Path to the file can be passed in with either the `--file` or `-f`.
+
+```bash
+$ python main.py 3 --file=500.txt 
+000000307
+000000343
+000000418
+```
+
+```bash
+$ python main.py 3 < 500.txt 
+000000307
+000000343
+000000418
+```
+
+I also included a generate script that I use to generate test data when doing performance and memory tests. It can be run by including the number of input data lines needed.
+
+```bash
+$ python generate.py 50000
+```
 
 ## Tests
+Tests can be invoked with `python tests.py`:
+
+```bash
+$ python tests.py 
+...........
+----------------------------------------------------------------------
+Ran 11 tests in 0.020s
+```
+
+Using the [Coverage module](https://coverage.readthedocs.io/en/coverage-5.1/), I verified that I achieved 100% test coverage.
+
+```bash
+$ coverage3 report -m
+Name       Stmts   Miss  Cover   Missing
+----------------------------------------
+main.py       39      0   100%
+```
+
+Of course, 100% test coverage is not a guarantee of correctness. I made the assumption that the input follows the prescribed format, but we can add further testing to cover cases if we don't have the confidence that it will.
+
+Furthermore, I kept everything in a single file for simplicity, but for larger projects, it's worthwhile to break tests down into separate files and directories for modularity.
