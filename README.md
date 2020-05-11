@@ -26,23 +26,15 @@ Filename: main.py
 
 Line #    Mem usage    Increment   Line Contents
 ================================================
-    20     10.8 MiB     10.8 MiB   @profile
-    21                             def x_largest(lines, x):
-    22     10.8 MiB      0.0 MiB   	heap = []
-    23     10.8 MiB      0.0 MiB   	for line in lines:
-    24     10.8 MiB      0.0 MiB   		current_record = Record(line)
-    25                             		# If we haven't seen x elements yet, just add them to our list.
-    26     10.8 MiB      0.0 MiB   		if len(heap) < x:
-    27     10.8 MiB      0.0 MiB   			heap.append(current_record)
-    28                             			# When we reach our xth element, turn it into a heap.
-    29     10.8 MiB      0.0 MiB   			if len(heap) == x:
-    30     10.8 MiB      0.0 MiB   				heapify(heap)
-    31                             		else:
-    32                             			# If our heap is already full, check if this value is larger than the heap's smallest.
-    33     10.8 MiB      0.0 MiB   			if heap[0].value < current_record.value:
-    34                             				# If it is, pop the smallest and push the current value.
-    35     10.8 MiB      0.0 MiB   				heapreplace(heap, current_record)
-    36     10.8 MiB      0.0 MiB   	return heap
+    23     11.8 MiB     11.8 MiB    @profile
+    24                              def add(self, record: Record) -> None:
+    25     11.8 MiB      0.0 MiB        if len(self.heap) < self.max_elements:
+    26                                      self.heap.append(record)
+    27                                      if len(self.heap) == self.max_elements:
+    28                                          heapq.heapify(self.heap)
+    29                                  else:
+    30     11.8 MiB      0.0 MiB            if self.heap[0] < record:
+    31                                          heapq.heapreplace(self.heap, record)
 ```
 
  In all my tests, memory usage stayed constant. It was only when I changed my value for X did my memory usage change.
